@@ -24,6 +24,19 @@ public class TicTacToe {
     }
 
     public void display() {
-        System.out.println(Arrays.deepToString(board));
+        String endRow = "|";
+        StringBuilder horizontalBorder = new StringBuilder();
+
+        horizontalBorder.append(" ---".repeat(size));
+        System.out.println(horizontalBorder);
+
+        for (Cell [] row : board){
+            for (Cell cell : row){
+                System.out.printf(cell.getRepresentation());
+            }
+            System.out.printf(endRow);
+            System.out.println();
+            System.out.println(horizontalBorder);
+        }
     }
 }
