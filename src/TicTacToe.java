@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class TicTacToe {
     final int size = 3;
     Cell[][] board = new Cell[size][size];
@@ -26,8 +24,8 @@ public class TicTacToe {
     public void display() {
         String endRow = "|";
         StringBuilder horizontalBorder = new StringBuilder();
+        horizontalBorder.append(" ----".repeat(size));
 
-        horizontalBorder.append(" ---".repeat(size));
         System.out.println(horizontalBorder);
 
         for (Cell [] row : board){
