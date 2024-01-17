@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class TicTacToe {
     final int size = 3;
     Player player = new Player();
@@ -29,8 +31,8 @@ public class TicTacToe {
 
         System.out.println(horizontalBorder);
 
-        for (Cell [] row : board){
-            for (Cell cell : row){
+        for (Cell[] row : board) {
+            for (Cell cell : row) {
                 System.out.printf(cell.getRepresentation());
             }
             System.out.printf(endRow);
@@ -38,13 +40,24 @@ public class TicTacToe {
             System.out.println(horizontalBorder);
         }
     }
-    public void getMoveFromPlayer(int[] move) {
-        boolean isMoveValid = move.length == 2;
 
-        if (isMoveValid) {
-            System.out.println(player.getRepresentation());
+    private boolean isMoveValid (int[] move) {
+        boolean isLengthValid = move.length == 2;
+        boolean isDataValid = (move[0] <= size && move[0] > 0) && (move[1] <= size && move[1] > 0);
+
+        return isLengthValid && isDataValid;
+    }
+    public int[] getMoveFromPlayer() {
+        int[] move = new int[2];
+
+        boolean canProceed = isMoveValid(move);
+
+        if (canProceed) {
+            System.out.println(Arrays.toString(move));
         } else {
-            System.out.println("Invalid input");
+            System.out.println("Your input is invalid, please try again");
+//            getMoveFromPlayer();
         }
+        return move;
     }
 }
