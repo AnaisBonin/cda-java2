@@ -19,6 +19,10 @@ public class TicTacToe {
         }
     }
 
+    public TicTacToe() {
+        getBoard();
+    }
+
     public void display() {
         System.out.println(Arrays.deepToString(board));
     }
