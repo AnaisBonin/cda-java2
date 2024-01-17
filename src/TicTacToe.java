@@ -10,4 +10,10 @@ public class TicTacToe {
         }
         return row;
     }
+
+    private void getBoard() {
+        for (int i = 0; i < size; i++) {
+            board[i] = buildOneRow();
+        }
+    }
 }
