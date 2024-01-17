@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class TicTacToe {
     final int size = 3;
     Cell[][] board = new Cell[size][size];
@@ -15,5 +17,9 @@ public class TicTacToe {
         for (int i = 0; i < size; i++) {
             board[i] = buildOneRow();
         }
+    }
+
+    public void display() {
+        System.out.println(Arrays.deepToString(board));
     }
 }
