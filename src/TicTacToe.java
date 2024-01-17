@@ -1,5 +1,6 @@
 public class TicTacToe {
     final int size = 3;
+    Player player = new Player();
     Cell[][] board = new Cell[size][size];
 
     private Cell[] buildOneRow() {
@@ -35,6 +36,15 @@ public class TicTacToe {
             System.out.printf(endRow);
             System.out.println();
             System.out.println(horizontalBorder);
+        }
+    }
+    public void getMoveFromPlayer(int[] move) {
+        boolean isMoveValid = move.length == 2;
+
+        if (isMoveValid) {
+            System.out.println(player.getRepresentation());
+        } else {
+            System.out.println("Invalid input");
         }
     }
 }
