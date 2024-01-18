@@ -99,7 +99,7 @@ public class TicTacToe {
         int row = move[1];
 
         Cell cell = new Cell(CellStatus.EMPTY);
-        String emptyCell = cell.representation;
+        String emptyCell = cell.getRepresentation();
 
         Cell targettedCell = board[row - 1][col - 1];
         String cellValue = targettedCell.getRepresentation();
@@ -126,4 +126,21 @@ public class TicTacToe {
         System.out.println("You picked: " + Arrays.toString(move));
         return move;
     }
+
+    private void setOwner(int[] move, Player player){
+        int col = move[0];
+        int row = move[1];
+        CellStatus status = player.getRepresentation();
+
+        this.board[row-1][col-1].setRepresentation(status);
+    }
+
+    public void play() {
+        while (true) {
+            display();
+            int[] move = getMoveFromPlayer();
+            setOwner(move, player);
+        }
+    }
+
 }
