@@ -88,16 +88,26 @@ public class TicTacToe {
     //
 
     private boolean isCellAvailable(int[] move) {
-        if (move[0] == 1) {
-            System.out.println("this cell is not available, select another cell");
-            return false;
-        } else {
-            System.out.println("cell valid");
+        int col = move[0];
+        int row = move[1];
+
+        Cell cell = new Cell();
+        String emptyCell = cell.representation;
+
+        Cell targettedCell = board[row - 1][col - 1];
+        String cellValue = targettedCell.getRepresentation();
+
+        if (cellValue.equals(emptyCell)) {
             return true;
+        } else {
+            System.out.println("This cell is not available, select another cell");
+            return false;
         }
     }
 
+    //
     // Finale public method return player move
+    //
 
     public int[] getMoveFromPlayer() {
         int[] move = new int[2];
