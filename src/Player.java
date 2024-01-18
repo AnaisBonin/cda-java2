@@ -7,7 +7,7 @@ public class Player {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Who do you want to play ? X or Y ? Press the X or Y key and Enter");
 
-        String playerRepresentation = scanner.nextLine();
+        String playerRepresentation = scanner.nextLine().toUpperCase();
 
         switch (playerRepresentation) {
             case "X":
