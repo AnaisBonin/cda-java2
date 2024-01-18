@@ -1,17 +1,15 @@
 public class Cell {
-    String representation;
-    CellStatus status;
+    private String representation;
 
-    private void defineRepresentation(CellStatus status) {
+    public void setRepresentation(CellStatus status) {
         switch(status) {
-            case X: representation = "|  X ";
-            case Y: representation = "|  Y ";
-            default: representation = "|    ";
+            case CellStatus.EMPTY -> this.representation = "|    ";
+            case CellStatus.X -> this.representation = "|  X ";
+            case CellStatus.Y -> this.representation = "|  Y ";
         }
     }
     public Cell(CellStatus status) {
-        this.status = status;
-        defineRepresentation(status);
+        setRepresentation(status);
     }
 
 
