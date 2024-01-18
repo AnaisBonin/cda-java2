@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class TicTacToe {
     final int size = 3;
@@ -41,23 +42,36 @@ public class TicTacToe {
         }
     }
 
-    private boolean isMoveValid (int[] move) {
-        boolean isLengthValid = move.length == 2;
-        boolean isDataValid = (move[0] <= size && move[0] > 0) && (move[1] <= size && move[1] > 0);
-
-        return isLengthValid && isDataValid;
+    private boolean isTargetValid(int target) {
+        return (target <= size && target > 0);
     }
+
+    Scanner scanner = new Scanner(System.in);
+    private int getPlayerEntry(String target) {
+        int result;
+
+        try {
+            System.out.println("which " + target + " do you want to target?");
+            result = Integer.parseInt( scanner.nextLine());
+
+            if (!isTargetValid(result)){
+                System.out.println("Invalid - you must choose a number between 1 and " + size);
+                return getPlayerEntry(target);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Entry invalid, try again:");
+            return getPlayerEntry(target);
+        }
+        return result;
+    }
+
     public int[] getMoveFromPlayer() {
         int[] move = new int[2];
 
-        boolean canProceed = isMoveValid(move);
+        move[0] = getPlayerEntry("Column");
+        move[1] = getPlayerEntry("Row");
 
-        if (canProceed) {
-            System.out.println(Arrays.toString(move));
-        } else {
-            System.out.println("Your input is invalid, please try again");
-//            getMoveFromPlayer();
-        }
+        System.out.println("You picked: " + Arrays.toString(move));
         return move;
     }
 }
