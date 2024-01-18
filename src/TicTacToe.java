@@ -83,6 +83,13 @@ public class TicTacToe {
         return result;
     }
 
+    private int[] setPlayerEntry() {
+        int col = getPlayerEntry("Column");
+        int row = getPlayerEntry("Row");
+
+        return new int[]{col, row};
+    }
+
     //
     // Check if targeted cell is available
     //
@@ -110,12 +117,11 @@ public class TicTacToe {
     //
 
     public int[] getMoveFromPlayer() {
-        int[] move = new int[2];
+        int[] move = setPlayerEntry();
 
-        move[0] = getPlayerEntry("Column");
-        move[1] = getPlayerEntry("Row");
-
-        if (!isCellAvailable(move)) return getMoveFromPlayer();
+        while (!isCellAvailable(move)) {
+            move = setPlayerEntry();
+        }
 
         System.out.println("You picked: " + Arrays.toString(move));
         return move;
