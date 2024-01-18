@@ -14,7 +14,7 @@ public class TicTacToe {
         Cell[] row = new Cell[size];
 
         for (int i = 0; i < size; i++) {
-            row[i] = new Cell();
+            row[i] = new Cell(CellStatus.EMPTY);
         }
         return row;
     }
@@ -98,7 +98,7 @@ public class TicTacToe {
         int col = move[0];
         int row = move[1];
 
-        Cell cell = new Cell();
+        Cell cell = new Cell(CellStatus.EMPTY);
         String emptyCell = cell.representation;
 
         Cell targettedCell = board[row - 1][col - 1];
