@@ -3,24 +3,39 @@ import java.util.Scanner;
 public class Player {
     String representation;
 
-    public String getRepresentation() {
+    //
+    // CONSTRUCTOR
+    //
+
+    private boolean isPlayerInputValid(String input) {
+        return switch (input) {
+            case "X", "Y" -> true;
+            default -> false;
+        };
+    }
+    private void getPlayerInput() {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Who do you want to play ? X or Y ? Press the X or Y key and Enter");
+        String playerInput = scanner.nextLine().toUpperCase();
 
-        String playerRepresentation = scanner.nextLine().toUpperCase();
-
-        switch (playerRepresentation) {
-            case "X":
-                representation = "|  X";
-                break;
-            case "Y":
-                representation = "|  Y";
-                break;
-            default:
-                System.out.println("Your entry is not valid, try again");
-                return getRepresentation();
+        while (!isPlayerInputValid(playerInput)) {
+            System.out.println("Your entry is not valid, press X or Y");
+            playerInput = scanner.nextLine().toUpperCase();
         }
-        System.out.println("Great! You are playing " + representation);
-        return representation;
+
+        representation = "|   " + playerInput;
+        System.out.println("Great! You are playing " + playerInput);
+    }
+
+    public Player() {
+        getPlayerInput();
+    }
+
+    //
+    // METHODS
+    //
+    public String getRepresentation() {
+        return this.representation;
     }
 }
