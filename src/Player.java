@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Player {
-    CellStatus representation;
+    Representation representation;
 
     //
     // CONSTRUCTOR
@@ -24,7 +24,7 @@ public class Player {
             playerInput = scanner.nextLine().toUpperCase();
         }
 
-        representation =  playerInput.equals("X") ? CellStatus.X : CellStatus.Y;
+        representation =  playerInput.equals("X") ? Representation.X : Representation.Y;
 
         System.out.println("Great! You are playing " + playerInput);
     }
@@ -36,7 +36,7 @@ public class Player {
     //
     // METHODS
     //
-    public CellStatus getRepresentation() {
+    public Representation getRepresentation() {
         return this.representation;
     }
 }

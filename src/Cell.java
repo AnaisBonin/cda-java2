@@ -1,14 +1,14 @@
 public class Cell {
     private String representation;
 
-    public void setRepresentation(CellStatus status) {
+    public void setRepresentation(Representation status) {
         switch(status) {
-            case CellStatus.EMPTY -> this.representation = "|    ";
-            case CellStatus.X -> this.representation = "|  X ";
-            case CellStatus.Y -> this.representation = "|  Y ";
+            case Representation.EMPTY -> this.representation = "|    ";
+            case Representation.X -> this.representation = "|  X ";
+            case Representation.Y -> this.representation = "|  Y ";
         }
     }
-    public Cell(CellStatus status) {
+    public Cell(Representation status) {
         setRepresentation(status);
     }
 
