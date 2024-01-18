@@ -54,7 +54,6 @@ public class TicTacToe {
         }
     }
 
-
     //
     // Check target chosen by Player: the target needs to be within the board size
     //
@@ -66,19 +65,20 @@ public class TicTacToe {
     Scanner scanner = new Scanner(System.in);
 
     private int getPlayerEntry(String target) {
-        int result;
+        int result= -1;
 
-        try {
-            System.out.println("which " + target + " do you want to target?");
-            result = Integer.parseInt(scanner.nextLine());
+        System.out.println("which " + target + " do you want to target?");
 
-            if (!isTargetValid(result)) {
-                System.out.println("Invalid - you must choose a number between 1 and " + size);
-                return getPlayerEntry(target);
+        while (!isTargetValid(result)) {
+            try {
+                result = Integer.parseInt(scanner.nextLine());
+
+                if (!isTargetValid(result)) {
+                    System.out.println("Invalid - you must choose a number between 1 and " + size);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Entry invalid, try again:");
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Entry invalid, try again:");
-            return getPlayerEntry(target);
         }
         return result;
     }
