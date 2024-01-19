@@ -15,6 +15,8 @@ public class TicTacToe {
     private final Cell[][] board = new Cell[size][size];
     private final Scanner scanner = new Scanner(System.in);
 
+    private Victory victory = new Victory();
+
     //
     // *********
     // ATTRIBUTES SETTERS
@@ -186,15 +188,21 @@ public class TicTacToe {
     private void playerTurn(Player player) {
         display();
         System.out.println("Your turn, player " + player.getRepresentation());
+
         int[] playerMove = getMoveFromPlayer();
         setOwner(playerMove, player);
+
+        boolean winner = victory.checkMoveForVictory(playerMove, board, size);
+
+        System.out.println(" DID YOU WIIN ???");
+        System.out.println(winner ? " YESSSSS" : "NOOOO :( ");
     }
 
     private void playTurns(Player player1, Player player2) {
         System.out.println("Welcome both of you! Now let's play. Player1, you start!");
         int turn = 0;
 
-        while (turn < size * size) {
+        while ((turn < (size * size))) {
             if (isFirstPlayerTurn(turn)) {
                 playerTurn(player1);
             } else {
