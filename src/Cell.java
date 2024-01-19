@@ -11,6 +11,9 @@ public class Cell {
     public Cell(Representation status) {
         setRepresentation(status);
     }
+    public Cell() {
+        this(Representation.EMPTY);
+    }
 
 
     public String getRepresentation() {
