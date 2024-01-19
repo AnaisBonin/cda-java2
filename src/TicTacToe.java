@@ -133,12 +133,33 @@ public class TicTacToe {
         this.board[row-1][col-1].setRepresentation(status);
     }
 
+    private void playerTurn(Player player) {
+        display();
+        System.out.println("Your turn, player " + player.getRepresentation());
+        int[] playerMove = getMoveFromPlayer();
+        setOwner(playerMove, player);
+    }
     public void play() {
-        while (true) {
-            display();
-            int[] move = getMoveFromPlayer();
-            setOwner(move, player);
+        Player player1 = new Player();
+
+        Representation player1Representation = player1.getRepresentation();
+        Player player2 = new Player(player1Representation);
+
+        System.out.println("Welcome both of you! Now let's play. Player1, you start!");
+        int turn = 1;
+
+        while (turn <= size * size ) {
+            if (turn % 2 == 0) {
+                playerTurn(player2);
+            } else {
+                playerTurn(player1);
+            }
+            turn++;
         }
+        display();
+        System.out.println("~~*-_-*-_-*-_-*~~");
+        System.out.println("All right! So, who won??");
+
     }
 
 }
