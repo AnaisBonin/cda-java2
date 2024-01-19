@@ -33,6 +33,16 @@ public class Player {
         getPlayerInput();
     }
 
+    public Player(Representation otherPlayerRepresentation) {
+        if (otherPlayerRepresentation == Representation.X) {
+            this.representation = Representation.Y;
+        } else {
+            this.representation = Representation.X;
+        }
+
+        System.out.println("Hello other player! Since the first player is playing as " + otherPlayerRepresentation + ", you will play as " + this.representation);
+    }
+
     //
     // METHODS
     //
