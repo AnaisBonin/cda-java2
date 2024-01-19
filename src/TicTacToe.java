@@ -29,7 +29,7 @@ public class TicTacToe {
         Cell[] row = new Cell[size];
 
         for (int i = 0; i < size; i++) {
-            row[i] = new Cell(Representation.EMPTY);
+            row[i] = new Cell();
         }
         return row;
     }
@@ -78,7 +78,7 @@ public class TicTacToe {
 
         for (Cell[] row : board) {
             for (Cell cell : row) {
-                System.out.printf(cell.getDrawing());
+                System.out.printf(cell.getDrawing(cell.getRepresentation()));
             }
             System.out.printf(endRow);
             System.out.println();
@@ -168,7 +168,7 @@ public class TicTacToe {
         int row = move[1];
         Representation status = player.getRepresentation();
 
-        this.board[row - 1][col - 1].setDrawing(status);
+        this.board[row - 1][col - 1].setRepresentation(status);
     }
 
 
