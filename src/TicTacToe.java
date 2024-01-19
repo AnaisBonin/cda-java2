@@ -2,15 +2,30 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class TicTacToe {
+
+    //
+    // *********
+    // ****************
+    // TIC TAC TOE ATTRIBUTES
+    // ****************
+    // *********
+    //
+
     private final int size = 3;
+    private final Cell[][] board = new Cell[size][size];
     private final Scanner scanner = new Scanner(System.in);
 
     //
-    // SET GAME BOARD AND SET BOARD ACCORDING TO SIZE
+    // *********
+    // ATTRIBUTES SETTERS
+    // *********
     //
-    private final Cell[][] board = new Cell[size][size];
 
-    private Cell[] buildOneRow() {
+    //
+    // BUILD BOARD : get one row first (*size* columns), then duplicate this row (*size* rows)
+    //
+
+    private Cell[] getOneRow() {
         Cell[] row = new Cell[size];
 
         for (int i = 0; i < size; i++) {
@@ -21,9 +36,18 @@ public class TicTacToe {
 
     private void getBoard() {
         for (int i = 0; i < size; i++) {
-            board[i] = buildOneRow();
+            board[i] = getOneRow();
         }
     }
+
+
+    //
+    // *********
+    // ****************
+    // TIC TAC TOE CONSTRUCTOR
+    // ****************
+    // *********
+    //
 
     public TicTacToe() {
         getBoard();
@@ -31,12 +55,20 @@ public class TicTacToe {
 
 
     //
-    // TICTACTOE METHODS
+    // *********
+    // ****************
+    // TIC TAC TOE METHODS
+    // ****************
+    // *********
     //
 
+
     //
+    // *********
     // Display visually game grid - size  * size
+    // *********
     //
+
     public void display() {
         String endRow = "|";
         StringBuilder horizontalBorder = new StringBuilder();
@@ -54,24 +86,27 @@ public class TicTacToe {
         }
     }
 
+
     //
-    // Check target chosen by Player: the target needs to be within the board size
+    // *********
+    // Check Player Move: the move/target needs to be within the board size
+    // *********
     //
 
-    private boolean isTargetInvalid(int target) {
+    private boolean isMoveInvalid(int target) {
         return (target > size || target <= 0);
     }
 
     private int getPlayerEntry(String target) {
-        int result= -1;
+        int result = -1;
 
         System.out.println("which " + target + " do you want to target?");
 
-        while (isTargetInvalid(result)) {
+        while (isMoveInvalid(result)) {
             try {
                 result = Integer.parseInt(scanner.nextLine());
 
-                if (isTargetInvalid(result)) {
+                if (isMoveInvalid(result)) {
                     System.out.println("Invalid - you must choose a number between 1 and " + size);
                 }
             } catch (NumberFormatException e) {
@@ -89,8 +124,11 @@ public class TicTacToe {
     }
 
     //
+    // *********
     // Check if targeted cell is available
+    // *********
     //
+
 
     private boolean isCellAvailable(int[] move) {
         int col = move[0];
@@ -107,8 +145,11 @@ public class TicTacToe {
         }
     }
 
+
     //
-    // Finale public method return player move
+    // *********
+    // METHOD to return player move
+    // *********
     //
 
     public int[] getMoveFromPlayer() {
@@ -122,13 +163,25 @@ public class TicTacToe {
         return move;
     }
 
-    private void setOwner(int[] move, Player player){
+    private void setOwner(int[] move, Player player) {
         int col = move[0];
         int row = move[1];
         Representation status = player.getRepresentation();
 
-        this.board[row-1][col-1].setDrawing(status);
+        this.board[row - 1][col - 1].setDrawing(status);
     }
+
+
+    //
+    // *********
+    // METHOD to play turns
+    // *********
+    //
+
+    private boolean isFirstPlayerTurn(int turn) {
+        return turn % 2 == 0;
+    }
+
 
     private void playerTurn(Player player) {
         display();
@@ -136,24 +189,36 @@ public class TicTacToe {
         int[] playerMove = getMoveFromPlayer();
         setOwner(playerMove, player);
     }
+
+    private void playTurns(Player player1, Player player2) {
+        System.out.println("Welcome both of you! Now let's play. Player1, you start!");
+        int turn = 0;
+
+        while (turn < size * size) {
+            if (isFirstPlayerTurn(turn)) {
+                playerTurn(player1);
+            } else {
+                playerTurn(player2);
+            }
+            turn++;
+        }
+        display();
+    }
+
+
+    //
+    // *********
+    // METHOD for final play
+    // *********
+    //
     public void play() {
         Player player1 = new Player();
 
         Representation player1Representation = player1.getRepresentation();
         Player player2 = new Player(player1Representation);
 
-        System.out.println("Welcome both of you! Now let's play. Player1, you start!");
-        int turn = 1;
+        playTurns(player1, player2);
 
-        while (turn <= size * size ) {
-            if (turn % 2 == 0) {
-                playerTurn(player2);
-            } else {
-                playerTurn(player1);
-            }
-            turn++;
-        }
-        display();
         System.out.println("~~*-_-*-_-*-_-*~~");
         System.out.println("All right! So, who won??");
 

@@ -16,7 +16,7 @@ public class Player {
     private void getPlayerInput() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Who do you want to play ? X or Y ? Press the X or Y key and Enter");
+        System.out.println("Hello new player! Who do you want to play ? X or Y ? Press the X or Y key and Enter");
         String playerInput = scanner.nextLine().toUpperCase();
 
         while (!isPlayerInputValid(playerInput)) {
@@ -39,7 +39,7 @@ public class Player {
         } else {
             this.representation = Representation.X;
         }
-
+        System.out.println("~~*-_-*-_-*-_-*~~");
         System.out.println("Hello other player! Since the first player is playing as " + otherPlayerRepresentation + ", you will play as " + this.representation);
     }
 
