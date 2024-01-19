@@ -46,7 +46,7 @@ public class TicTacToe {
 
         for (Cell[] row : board) {
             for (Cell cell : row) {
-                System.out.printf(cell.getRepresentation());
+                System.out.printf(cell.getDrawing());
             }
             System.out.printf(endRow);
             System.out.println();
@@ -96,13 +96,10 @@ public class TicTacToe {
         int col = move[0];
         int row = move[1];
 
-        Cell cell = new Cell(Representation.EMPTY);
-        String emptyCell = cell.getRepresentation();
-
         Cell targettedCell = board[row - 1][col - 1];
-        String cellValue = targettedCell.getRepresentation();
+        boolean isCellAvailable = targettedCell.isCellAvailable();
 
-        if (cellValue.equals(emptyCell)) {
+        if (isCellAvailable) {
             return true;
         } else {
             System.out.println("This cell is not available, select another cell");
@@ -130,7 +127,7 @@ public class TicTacToe {
         int row = move[1];
         Representation status = player.getRepresentation();
 
-        this.board[row-1][col-1].setRepresentation(status);
+        this.board[row-1][col-1].setDrawing(status);
     }
 
     private void playerTurn(Player player) {

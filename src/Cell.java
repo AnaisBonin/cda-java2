@@ -1,18 +1,44 @@
 public class Cell {
-    private String representation;
 
-    public void setRepresentation(Representation status) {
-        this.representation = "|  " + status.getValue() + " ";
+    //
+    // ATTRIBUTES
+    //
+
+    private Representation representation;
+    private String drawing;
+
+    public void setDrawing(Representation representation) {
+        this.drawing = "|  " + representation.getValue() + " ";
     }
-    public Cell(Representation status) {
-        setRepresentation(status);
+
+    public void setRepresentation(Representation representation) {
+        this.representation = representation;
+    }
+
+    //
+    // CONSTRUCTOR
+    //
+
+    public Cell(Representation representation) {
+        setRepresentation(representation);
+        setDrawing(representation);
     }
     public Cell() {
         this(Representation.EMPTY);
     }
 
+    //
+    // METHODS
+    //
+    public boolean isCellAvailable(){
+        return this.representation == Representation.EMPTY;
+    }
 
-    public String getRepresentation() {
+    public Representation getRepresentation() {
         return this.representation;
+    }
+
+    public String getDrawing() {
+        return this.drawing;
     }
 }
