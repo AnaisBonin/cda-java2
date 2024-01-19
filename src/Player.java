@@ -1,10 +1,23 @@
 import java.util.Scanner;
 
 public class Player {
+
+    //
+    // *********
+    // ****************
+    // PLAYER ATTRIBUTES
+    // ****************
+    // *********
+    //
+
     private Representation representation;
 
     //
-    // CONSTRUCTOR
+    // *********
+    // ****************
+    // PLAYER CONSTRUCTOR
+    // ****************
+    // *********
     //
 
     private boolean isPlayerInputValid(String input) {
@@ -44,7 +57,11 @@ public class Player {
     }
 
     //
-    // METHODS
+    // *********
+    // ****************
+    // PLAYER METHODS
+    // ****************
+    // *********
     //
     public Representation getRepresentation() {
         return this.representation;
