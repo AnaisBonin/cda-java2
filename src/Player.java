@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Player {
-    Representation representation;
+    private Representation representation;
 
     //
     // CONSTRUCTOR

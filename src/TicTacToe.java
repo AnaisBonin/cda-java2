@@ -2,13 +2,13 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class TicTacToe {
-    final int size = 3;
-    Player player = new Player();
+    private final int size = 3;
+    private final Scanner scanner = new Scanner(System.in);
 
     //
     // SET GAME BOARD AND SET BOARD ACCORDING TO SIZE
     //
-    Cell[][] board = new Cell[size][size];
+    private final Cell[][] board = new Cell[size][size];
 
     private Cell[] buildOneRow() {
         Cell[] row = new Cell[size];
@@ -58,22 +58,20 @@ public class TicTacToe {
     // Check target chosen by Player: the target needs to be within the board size
     //
 
-    private boolean isTargetValid(int target) {
-        return (target <= size && target > 0);
+    private boolean isTargetInvalid(int target) {
+        return (target > size || target <= 0);
     }
-
-    Scanner scanner = new Scanner(System.in);
 
     private int getPlayerEntry(String target) {
         int result= -1;
 
         System.out.println("which " + target + " do you want to target?");
 
-        while (!isTargetValid(result)) {
+        while (isTargetInvalid(result)) {
             try {
                 result = Integer.parseInt(scanner.nextLine());
 
-                if (!isTargetValid(result)) {
+                if (isTargetInvalid(result)) {
                     System.out.println("Invalid - you must choose a number between 1 and " + size);
                 }
             } catch (NumberFormatException e) {
