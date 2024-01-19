@@ -2,11 +2,7 @@ public class Cell {
     private String representation;
 
     public void setRepresentation(Representation status) {
-        switch(status) {
-            case Representation.EMPTY -> this.representation = "|    ";
-            case Representation.X -> this.representation = "|  X ";
-            case Representation.Y -> this.representation = "|  Y ";
-        }
+        this.representation = "|  " + status.getValue() + " ";
     }
     public Cell(Representation status) {
         setRepresentation(status);
