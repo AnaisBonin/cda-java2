@@ -26,7 +26,7 @@ public class Player {
             default -> false;
         };
     }
-    private void getPlayerInput() {
+    private void getPlayerRepresentation() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Hello new player! Who do you want to play ? X or Y ? Press the X or Y key and Enter");
@@ -43,7 +43,7 @@ public class Player {
     }
 
     public Player() {
-        getPlayerInput();
+        getPlayerRepresentation();
     }
 
     public Player(Representation otherPlayerRepresentation) {
