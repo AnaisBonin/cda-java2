@@ -202,11 +202,15 @@ public class TicTacToe {
         }
     }
 
+    private boolean isOver(int turn){
+        return (turn >= (size * size)) || victory.getVictory();
+    }
+
     private void playTurns(Player player1, Player player2) {
         System.out.println("Welcome both of you! Now let's play. Player1, you start!");
         int turn = 0;
 
-        while ((turn < (size * size)) && !victory.getVictory()) {
+        while (!isOver(turn)) {
             if (isFirstPlayerTurn(turn)) {
                 playerTurn(player1);
             } else {
