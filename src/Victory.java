@@ -26,8 +26,7 @@ public class Victory {
     }
 
     private boolean isIdenticalRow(Cell[] row) {
-        boolean victory = areValuesIdentical(row);
-        return setVictory(victory);
+        return areValuesIdentical(row);
     }
 
     private boolean isIdenticalColumn(Cell[][] board, int columnNumber, int size) {
@@ -36,30 +35,48 @@ public class Victory {
         for (int i = 0; i < size; i++) {
             columnArray[i] = board[i][columnNumber];
         }
-        boolean victory = areValuesIdentical(columnArray);
-        return setVictory(victory);
+        return areValuesIdentical(columnArray);
     }
 
-    private boolean isIdenticalDiagonal(Cell[][] board, int size) {
+    private boolean isDiagonal1Identical(Cell[][] board, int size) {
         Cell[] diagonal1 = new Cell[size];
-        Cell[] diagonal2 = new Cell[size];
-
-        diagonal1[0] = board[0][2];
-        diagonal1[1] = board[1][1];
-        diagonal1[2] = board[2][0];
 
         for (int i = 0; i < size; i++) {
-            diagonal2[i] = board[i][i];
+            Cell currentCell = board[i][size - 1 - i];
+
+            if (currentCell.getRepresentation() == Representation.EMPTY) {
+                return false;
+            }
+            diagonal1[i] = currentCell;
         }
 
-        boolean victory = areValuesIdentical(diagonal1) | areValuesIdentical(diagonal2);
-        return setVictory(victory);
+        return areValuesIdentical(diagonal1);
     }
 
-    public boolean checkMoveForVictory(int[] move, Cell[][]board, int size){
-        return isIdenticalColumn(board, move[0]-1, size) |
-        isIdenticalRow(board[move[1]-1]) |
-        isIdenticalDiagonal(board, size);
+    private boolean isDiagonal2Identical(Cell[][] board, int size) {
+        Cell[] diagonal2 = new Cell[size];
+
+        for (int i = 0; i < size; i++) {
+            Cell currentCell = board[i][i];
+
+            if (currentCell.getRepresentation() == Representation.EMPTY) {
+                return false;
+            }
+            diagonal2[i] = currentCell;
+        }
+
+        return areValuesIdentical(diagonal2);
+    }
+
+    public boolean foundWinningLine(int[] move, Cell[][] board, int size) {
+        boolean victory = isIdenticalColumn(board, move[0] - 1, size) |
+                isIdenticalRow(board[move[1] - 1]) |
+                isDiagonal1Identical(board, size) |
+                isDiagonal2Identical(board, size);
+        System.out.println("FOUND WINNING LINE");
+        System.out.println(victory);
+        if (victory) setVictory(true);
+        return victory;
     }
 
     // **
@@ -83,12 +100,11 @@ public class Victory {
     // ******
     // **
 
-    public boolean setVictory(boolean status) {
+    public void setVictory(boolean status) {
         this.status = status;
-        return status;
     }
 
-    public boolean getVictory(){
+    public boolean getVictory() {
         return this.status;
     }
 }

@@ -188,11 +188,14 @@ public class TicTacToe {
     private void playerTurn(Player player) {
         display();
         System.out.println("Your turn, player " + player.getRepresentation());
-
+        System.out.println("VICTORY");
+        System.out.println("VICTORY");
+        System.out.println("VICTORY");
+        System.out.println(victory.getVictory());
         int[] playerMove = getMoveFromPlayer();
         setOwner(playerMove, player);
 
-        boolean winner = victory.checkMoveForVictory(playerMove, board, size);
+        boolean winner = victory.foundWinningLine(playerMove, board, size);
 
         System.out.println(" DID YOU WIIN ???");
         System.out.println(winner ? " YESSSSS" : "NOOOO :( ");
