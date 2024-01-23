@@ -69,14 +69,10 @@ public class Victory {
     }
 
     public boolean foundWinningLine(int[] move, Cell[][] board, int size) {
-        boolean victory = isIdenticalColumn(board, move[0] - 1, size) |
+        return isIdenticalColumn(board, move[0] - 1, size) |
                 isIdenticalRow(board[move[1] - 1]) |
                 isDiagonal1Identical(board, size) |
                 isDiagonal2Identical(board, size);
-        System.out.println("FOUND WINNING LINE");
-        System.out.println(victory);
-        if (victory) setVictory(true);
-        return victory;
     }
 
     // **
