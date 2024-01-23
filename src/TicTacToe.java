@@ -15,6 +15,8 @@ public class TicTacToe {
     private final Cell[][] board = new Cell[size][size];
     private final Scanner scanner = new Scanner(System.in);
 
+    private String victoryMessage = "No winner yet";
+
     private Victory victory = new Victory();
 
     //
@@ -188,24 +190,23 @@ public class TicTacToe {
     private void playerTurn(Player player) {
         display();
         System.out.println("Your turn, player " + player.getRepresentation());
-        System.out.println("VICTORY");
-        System.out.println("VICTORY");
-        System.out.println("VICTORY");
-        System.out.println(victory.getVictory());
+
         int[] playerMove = getMoveFromPlayer();
         setOwner(playerMove, player);
 
-        boolean winner = victory.foundWinningLine(playerMove, board, size);
+        boolean isWinner = victory.foundWinningLine(playerMove, board, size);
 
-        System.out.println(" DID YOU WIIN ???");
-        System.out.println(winner ? " YESSSSS" : "NOOOO :( ");
+        if (isWinner) {
+            victory.setVictory(true);
+            victoryMessage = ("Player " + player.getRepresentation() + " won!!");
+        }
     }
 
     private void playTurns(Player player1, Player player2) {
         System.out.println("Welcome both of you! Now let's play. Player1, you start!");
         int turn = 0;
 
-        while ((turn < (size * size))) {
+        while ((turn < (size * size)) && !victory.getVictory()) {
             if (isFirstPlayerTurn(turn)) {
                 playerTurn(player1);
             } else {
@@ -213,6 +214,7 @@ public class TicTacToe {
             }
             turn++;
         }
+
         display();
     }
 
@@ -231,7 +233,7 @@ public class TicTacToe {
         playTurns(player1, player2);
 
         System.out.println("~~*-_-*-_-*-_-*~~");
-        System.out.println("All right! So, who won??");
+        System.out.println(victoryMessage);
 
     }
 
