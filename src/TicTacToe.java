@@ -15,9 +15,9 @@ public class TicTacToe {
     private final Cell[][] board = new Cell[size][size];
     private final Scanner scanner = new Scanner(System.in);
 
-    private String victoryMessage = "No winner yet";
+    private final Victory victory = new Victory();
 
-    private Victory victory = new Victory();
+    private String victoryMessage = "No winner yet";
 
     //
     // *********
@@ -233,6 +233,9 @@ public class TicTacToe {
         playTurns(player1, player2);
 
         System.out.println("~~*-_-*-_-*-_-*~~");
+        if (!victory.getVictory()) {
+            victoryMessage = "Both of you lost :( Try again!";
+        }
         System.out.println(victoryMessage);
 
     }
